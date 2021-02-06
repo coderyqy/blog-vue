@@ -4,7 +4,7 @@
         name：<input type="text" v-model="name">
         password：<input type="text" v-model="password" >
       </div>
-      <button @click="register1">注册</button>
+      <button @click="login">注册</button>
   </div>
 </template>
 
@@ -13,15 +13,15 @@ import { register } from 'network/user'
 import axios from 'axios'
 
 export default {
-  name: "register",
+  name: "adminLogin",
   data(){
     return {
-      name: 'asdfasdfa',
-      password: 'sdfasdfdsf'
+      name: '',
+      password: ''
     }
   },
   methods: {
-    async register1() {
+    async login() {
       console.log(this.name, this.password);
       const res = await register(this.name, this.password)
       console.log(res);
