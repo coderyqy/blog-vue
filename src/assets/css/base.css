@@ -1,0 +1,16 @@
+@import "./normalize.css";
+
+/* 定义变量 */
+:root {
+  --color-text: red
+}
+
+/* 使用变量 */
+p {
+  color: var(--color-text)
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
