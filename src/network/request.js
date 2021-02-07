@@ -1,8 +1,8 @@
 import axios from "axios"
+import store from '@/store/'
 
 export function request (config) {
   // 创建一个实例
-  console.log(process.env.VUE_APP_URL)
   const instance = new axios.create({
     baseURL: process.env.VUE_APP_URL,
     timeout: 5000
@@ -10,7 +10,10 @@ export function request (config) {
 
   // 请求拦截 
   instance.interceptors.request.use(config => {
-    console.log(config)
+    const { user } = store.state
+    if (user) {
+      config.headers.Authorization = `Bearer ${user.token}`
+    }
     return config
   }, err => {
     console.log(err)
@@ -18,7 +21,7 @@ export function request (config) {
 
   // 响应拦截
   instance.interceptors.response.use(res => {
-    return res
+    return res.data
   }, err => {
     console.log(err)
   })

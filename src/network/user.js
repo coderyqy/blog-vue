@@ -14,8 +14,8 @@ export function register (name, password) {
 export function login (name, password) {
   return request({
     url: "/user/login",
-    method: "get",
-    param: {
+    method: "post",
+    data: {
       name,
       password
     }
