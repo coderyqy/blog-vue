@@ -2,13 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AdminLogin from 'views/adminLogin/login'
 import Home from 'views/home/Home'
-import Comment from 'views/home/Comment'
-import Article from 'views/home/Article'
+// import Comment from 'views/home/Comment'
+import Article from 'views/home/article/Article'
+import AddArticle from 'views/home/article/AddArticle'
 
 Vue.use(VueRouter)
 
 // 解决重复点击报错
 const originalPush = VueRouter.prototype.push
+
 VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
 }
@@ -24,17 +26,17 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    redirect: "/comment",
+    redirect: "/article",
     children: [
-      {
-        path: '/comment', // 默认子路由
-        name: 'Comment',
-        component: Comment
-      },
       {
         path: '/article', // 默认子路由
         name: 'Article',
-        component: Article
+        component: Article,
+      },
+      {
+        path: '/addArticle',
+        name: 'AddArticle',
+        component: AddArticle,
       }
     ]
   }

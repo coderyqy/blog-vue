@@ -4,6 +4,11 @@
       <div class="logo">
         logo后台管理系统
       </div>
+      <div class="util">
+        <div class="logout">
+          <i class="el-icon-switch-button"></i>
+        </div>
+      </div>
     </div>
     <div class="main">
       <div id="menu">
@@ -11,6 +16,10 @@
           <li>
             <img class="icon-img" src="@/assets/image/menu-icon/home-icon.png" alt="">
             <span class="menu-name">home</span>
+          </li>
+          <li @click="$router.push('/article')" >
+            <img class="icon-img" src="@/assets/image/menu-icon/home-icon.png" alt="">
+            <span class="menu-name">article</span>
           </li>
           <li @click="$router.push('/comment')">
             <img class="icon-img" src="@/assets/image/menu-icon/home-icon.png" alt="">
@@ -20,18 +29,11 @@
             <img class="icon-img" src="@/assets/image/menu-icon/home-icon.png" alt="">
             <span class="menu-name">chat</span>
           </li>
-          <li @click="$router.push('/article')">
-            <img class="icon-img" src="@/assets/image/menu-icon/home-icon.png" alt="">
-            <span class="menu-name">article</span>
-          </li>
         </ul>
       </div>
-      <div>
+      <div id="view">
         <router-view></router-view>
       </div>
-    </div>
-    <div>
-      
     </div>
   </div>
 </template>
@@ -56,12 +58,16 @@ export default {
     width: 200px;
     height: 100%;
     color: #fff;
-    /* background: linear-gradient(rgba(191,51,78,1), rgba(191,51,78,0)); */
     background-image:-webkit-linear-gradient(   
     rgba(191,51,78,1) 70%,
     rgba(0,0,0,0))
   }
+  #view {
+    flex: 1;
+    background-color: rgb(249,249,249);
+  }
   #top {
+    display: flex;
     width: 100%;
     height: 80px;
     background: url("../../assets/image/top-bg.png") no-repeat;
@@ -75,6 +81,22 @@ export default {
     color: #fff;
     letter-spacing: 1px;
     margin-left: 20px;
+  }
+  #top .util {
+    display: flex;
+    width: 700px;
+    height: 80px;
+    margin-left: auto;
+    background-image:linear-gradient(
+    to left,
+    rgba(191,51,78,1) 50%,
+    rgba(0,0,0,0))
+  }
+  #top .util .logout{
+    height: 80px;
+    line-height: 80px;
+    margin-left: auto;
+    margin-right: 30px;
   }
   ul li {
     cursor: pointer;
@@ -95,9 +117,6 @@ export default {
     padding-left: 14px;
     font-size: 18px;
     text-align: center;
-  }
-  .first {
-    color: #fff;
   }
 
 .test{
