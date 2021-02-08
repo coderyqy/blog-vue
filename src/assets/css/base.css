@@ -2,13 +2,7 @@
 
 /* 定义变量 */
 :root {
-  --color-text: red;
   --theme-color: rgb(191,51,78)
-}
-
-/* 使用变量 */
-p {
-  color: var(--color-text)
 }
 
 * {

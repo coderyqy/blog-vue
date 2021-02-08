@@ -1,8 +1,8 @@
 <template>
   <div class="add-article">
     <el-page-header @back="$router.go(-1)"></el-page-header>
-    <div>
-      <mavon-editor :toolbars="toolbars" style="height:600px" ref="md"/>
+    <div class="editor">
+      <mavon-editor :toolbars="toolbars" style="height:700px;" ref="md"/>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
         ul: true, // 无序列表
         link: true, // 链接
         imagelink: true, // 图片链接
-        code: false, // code
+        code: true, // code
         table: true, // 表格
         fullscreen: true, // 全屏编辑
         readmodel: true, // 沉浸式阅读
@@ -70,5 +70,9 @@ export default {
 .add-article {
   margin: 14px;
   background-color: #fff;
+}
+
+.editor {
+  margin-top: 20px;
 }
 </style>
