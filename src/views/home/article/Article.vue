@@ -21,37 +21,50 @@
       </div>
     </div>
     <div class="main">
-       <el-table
+      <el-table
         :data="tableData"
         stripe
         style="width: 100%">
+
         <el-table-column
-          prop="date"
-          label="日期"
+          prop="title"
+          label="标题"
           width="180">
         </el-table-column>
+        
         <el-table-column
-          prop="name"
-          label="姓名"
+          prop="is_status"
+          label="状态"
+          width="180">
+          <template slot-scope="scope">
+            {{ scope.row.is_status == 0 ? '未发布' : '已发布'}}
+          </template>
+        </el-table-column>
+
+        <el-table-column
+          prop="up"
+          label="创建时间"
           width="180">
         </el-table-column>
-        <el-table-column
-          prop="address"
-          label="地址"
-          width="280">
-        </el-table-column>
+
         <el-table-column
           label="操作">
-          <el-button class="delete">修改</el-button>
-          <el-button class="stop">停止</el-button>
-          <el-button class="delete">删除</el-button>
+          <template slot-scope="scope">
+            <el-button class="delete" @click="$router.push(`/modifyArticle/${scope.row.id}`)">修改</el-button>
+            <el-button class="stop" v-if="scope.row.is_status == 0">发布</el-button>
+            <el-button class="stop" v-if="scope.row.is_status == 1">停止</el-button>
+            <el-button class="delete">删除</el-button>
+          </template>
         </el-table-column>
+
       </el-table>
     </div>
   </div>
 </template>
 
 <script>
+import { getAllArticle } from 'network/article';
+
 export default {
   name: "Article",
   data() {
@@ -74,28 +87,18 @@ export default {
           label: '北京烤鸭'
         }],
         value: '',
-         tableData: [{
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }]
+        tableData: [],
     }
+  },
+  methods: {
+    async getAllArticle(){ // 获取所有文章
+      const con = await getAllArticle();
+      this.tableData = con.result[0];
+      console.log(con.result[0]);
+    }
+  },
+  created() {
+    this.getAllArticle();
   }
 }
 </script>

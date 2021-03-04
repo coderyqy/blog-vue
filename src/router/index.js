@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AdminLogin from 'views/adminLogin/login'
-import Home from 'views/home/Home'
-// import Comment from 'views/home/Comment'
-import Article from 'views/home/article/Article'
-import AddArticle from 'views/home/article/AddArticle'
+const Home = () => import('views/home/Home')
+
+const Article = () => import('views/home/article/Article')
+const AddArticle = () => import('views/home/article/AddArticle')
+const ModifyArticle = () => import('views/home/article/ModifyArticle')
 
 Vue.use(VueRouter)
 
@@ -37,6 +38,11 @@ const routes = [
         path: '/addArticle',
         name: 'AddArticle',
         component: AddArticle,
+      },
+      {
+        path: '/modifyArticle/:id',
+        name: 'ModifyArticle',
+        component: ModifyArticle,
       }
     ]
   }

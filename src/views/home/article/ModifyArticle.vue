@@ -8,22 +8,18 @@
           <span>文章标题</span>
           <el-input v-model="articleTitle" class="article-title-inp" placeholder="请输入内容"></el-input>
         </div>
-        <el-button type="primary" class="save-btn" @click="saveArticle">保存</el-button>
-      </div>  
+        <el-button type="primary" class="save-btn" >保存</el-button>
+      </div>
     </el-card>
 
     <div class="editor">
       <mavon-editor :toolbars="toolbars" v-model="value" style="height:700px;" ref="md"/>
-      <div class="upload">
-        <input type="file" name="" id="">
-        <div>点击上传</div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { save } from 'network/article';
+import { getArticle } from 'network/article';
 
 export default {
   name: "AddArticle",
@@ -66,9 +62,7 @@ export default {
       },
       value: '',
       articleTitle: '',
-      dialogImageUrl: '',
-      dialogVisible: false,
-      disabled: false
+      articleId: this.$route.params.id
     }
   },
   methods: {
@@ -83,22 +77,14 @@ export default {
     handleEditorImgDel(){
     
     },
-    async saveArticle() {
-      console.log(this.articleTitle,this.value);
-      const con = await save(this.articleTitle,this.value);
+    async getArticle() {
+      const con = await getArticle(this.articleId);
       console.log('----返回的数据----');
       console.log(con);
-    },
-    handleRemove(file) {
-      console.log(file);
-    },
-    handlePictureCardPreview(file) {
-      this.dialogImageUrl = file.url;
-      this.dialogVisible = true;
-    },
-    handleDownload(file) {
-      console.log(file);
     }
+  },
+  created() {
+    this.getArticle()
   }
 }
 </script>

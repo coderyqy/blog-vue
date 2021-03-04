@@ -2,7 +2,7 @@
   <div id="home">
     <div id="top">
       <div class="logo">
-        logo后台管理系统
+        后台管理系统
       </div>
       <div class="util">
         <div class="logout">
@@ -48,7 +48,9 @@ export default {
   #home {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
+    /* background: url("../../assets/image/bgimg2.jpg") no-repeat;
+    background-size: cover; */
   }
   .main {
     height: 100%;
@@ -58,9 +60,9 @@ export default {
     width: 200px;
     height: 100%;
     color: #fff;
-    background-image:-webkit-linear-gradient(   
-    rgba(191,51,78,1) 70%,
-    rgba(0,0,0,0))
+    /* background-image:-webkit-linear-gradient(   
+    rgba(191,51,78,1) 54%,
+    rgba(0,0,0,0)) */
   }
   #view {
     flex: 1;
@@ -70,8 +72,6 @@ export default {
     display: flex;
     width: 100%;
     height: 80px;
-    background: url("../../assets/image/top-bg.png") no-repeat;
-    background-size: cover;
   }
   #top .logo {
     height: 80px;
@@ -87,10 +87,10 @@ export default {
     width: 700px;
     height: 80px;
     margin-left: auto;
-    background-image:linear-gradient(
+    /* background-image:linear-gradient(
     to left,
     rgba(191,51,78,1) 50%,
-    rgba(0,0,0,0))
+    rgba(0,0,0,0)) */
   }
   #top .util .logout{
     height: 80px;
